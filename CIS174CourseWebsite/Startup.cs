@@ -35,7 +35,7 @@ namespace CIS174CourseWebsite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            //services.AddDbContext<AssignmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ContactContext")));
+            services.AddDbContext<AssignmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AssignmentContext")));
             services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;
