@@ -1,0 +1,37 @@
+﻿/***************************************************************
+* Name        : custom.css
+* Author      : Tom Sorteberg
+* Created     : 02/14/2021
+* Course      : CIS 174
+* Version     : 1.0
+* OS          : Windows 10 Pro, Visual Studio Community 2019
+* Copyright   : This is my own original work based on
+*               specifications issued by our instructor
+* Description : Module 4 Topic 5
+* I have not used unauthorized source code, either modified or
+* unmodified. I have not given other fellow student(s) access
+* to my program.
+***************************************************************/
+body {
+    padding: 1em;
+    font-family: Arial, Arial, Helvetica, sans-serif, sans-serif;
+}
+
+h1 {
+    margin-top: 0;
+    color: navy;
+}
+
+label {
+    display: inline-block;
+    width: 10em;
+    padding-right: 1em;
+}
+
+div {
+    margin-bottom: .5em;
+}
+
+.btn {
+    width: 80px;
+}
