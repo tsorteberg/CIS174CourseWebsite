@@ -65,7 +65,7 @@ namespace CIS174CourseWebsite
                 endpoints.MapAreaControllerRoute(
                     name: "admin",
                     areaName: "Admin",
-                    pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
+                    pattern: "Admin/{controller=AdminHome}/{action=AdminIndex}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

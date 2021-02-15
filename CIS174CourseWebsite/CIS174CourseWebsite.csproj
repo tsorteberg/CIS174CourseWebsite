@@ -14,7 +14,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\Assignments\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 

@@ -17,13 +17,13 @@ using CIS174CourseWebsite.Models;
 
 namespace CIS174CourseWebsite.Areas.Admin.Controllers
 {
-    public class AssignmentController : Controller
+    public class AdminAssignmentController : Controller
     {
         // Context class private attribute.
         private AssignmentContext context { get; set; }
 
         // Primary constructor.
-        public AssignmentController(AssignmentContext ctx)
+        public AdminAssignmentController(AssignmentContext ctx)
         {
             context = ctx;
         }
@@ -41,8 +41,8 @@ namespace CIS174CourseWebsite.Areas.Admin.Controllers
         public IActionResult Edit(int id)
         {
             ViewBag.Action = "Edit";
-            var contact = context.Assignments.Find(id);
-            return View(contact);
+            var assignment = context.Assignments.Find(id);
+            return View(assignment);
         }
 
         // Edit post action.
@@ -56,7 +56,7 @@ namespace CIS174CourseWebsite.Areas.Admin.Controllers
                 else
                     context.Assignments.Update(assignment);
                 context.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("AdminIndex", "AdminHome");
             }
             else
             {

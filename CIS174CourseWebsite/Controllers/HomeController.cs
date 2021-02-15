@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CIS174CourseWebsite.Controllers
 {
-    [Route("[controller]")]
+    //[Route("[controller]")]
     public class HomeController : Controller
     {
         // Index action.
