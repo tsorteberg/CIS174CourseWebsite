@@ -16,27 +16,28 @@
 -->
 @model List<Assignment>
 @{
-    ViewBag.Title = "My Assignments";
+    ViewBag.Title = "Assignment List:";
 }
 
-<h2>Assignment List</h2>
-
-<table class="table-striped table-bordered table-hover">
-    <thead>
-        <tr>
-            <th>Name</th>
-            <th>URL</th>
-            <th>Notes</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var assignment in Model)
-        {
+<h2>@ViewBag.Title</h2>
+<div >
+    <table class="table-striped table-bordered table-hover">
+        <thead>
             <tr>
-                <td>@assignment.Name</td>
-                <td><a href="@assignment.URL">@assignment.URL</a></td>
-                <td>@assignment.Note</td>
+                <th>Name</th>
+                <th>URL</th>
+                <th>Notes</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var assignment in Model)
+            {
+                <tr>
+                    <td>@assignment.Name</td>
+                    <td class="cell-breakWord"><a href="@assignment.URL">@assignment.URL</a></td>
+                    <td>@assignment.Note</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,51 @@
+﻿<!--
+/***************************************************************
+* Name        : M45Index.cshtml
+* Author      : Tom Sorteberg
+* Created     : 02/14/2021
+* Course      : CIS 174
+* Version     : 1.0
+* OS          : Windows 10 Pro, Visual Studio Community 2019
+* Copyright   : This is my own original work based on
+*               specifications issued by our instructor
+* Description : Module 4 Topic 5
+* I have not used unauthorized source code, either modified or
+* unmodified. I have not given other fellow student(s) access
+* to my program.
+***************************************************************/
+-->
+@{
+    ViewBag.Title = "Routing Demonstration:";
+}
+
+<div>
+
+    <h1>Routing demonstration:</h1>
+
+    <h2>Default routing:</h2>
+    <p>
+        endpoints.MapAreaControllerRoute(<br />
+        &nbsp&nbspname: "M45default", <br />
+        &nbsp&nbspareaName: "M45",<br />
+        &nbsp&nbsppattern: "M45/{controller=M45Home}/{action=M45Index}/{id?}");
+    </p>
+    <a href="/M45/">Default Route</a><br />
+    <a href="/M45/M45Home/M45Default/123">/M45/M45Home/M45Default/123</a><br />
+    <br />
+
+    <h2>Custom routing:</h2>
+    <p>
+        endpoints.MapAreaControllerRoute(<br />
+        &nbsp&nbspname: "M45paging", <br />
+        &nbsp&nbspareaName: "M45",<br />
+        &nbsp&nbsppattern: "M45/{controller}/{action}/{id}/page{page}");
+    </p>
+    <a href="/M45/M45Home/M45Custom/123/page1">/M45/M45Home/M45Default/123/page1</a><br />
+    <br />
+
+    <h2>Attribute Routing:</h2>
+    <p>
+        [Route("M45Attribute/{cat?}")]
+    </p>
+    <a href="/M45Attribute/routes">/M45Attribute/routes</a><br />
+</div>

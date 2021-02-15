@@ -67,6 +67,18 @@ namespace CIS174CourseWebsite
                     areaName: "Admin",
                     pattern: "Admin/{controller=AdminHome}/{action=AdminIndex}/{id?}");
 
+                // Specific route - 4 required segments.
+                endpoints.MapAreaControllerRoute(
+                    name: "M45paging",
+                    areaName: "M45",
+                    pattern: "M45/{controller}/{action}/{id}/page{page}");
+
+                // Least specific route - 0 required segments.
+                endpoints.MapAreaControllerRoute(
+                    name: "M45default",
+                    areaName: "M45",
+                    pattern: "M45/{controller=M45Home}/{action=M45Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
