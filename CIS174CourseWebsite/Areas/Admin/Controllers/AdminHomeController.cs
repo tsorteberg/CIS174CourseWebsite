@@ -1,5 +1,5 @@
 ﻿/***************************************************************
-* Name        : Admin\HomeController.cs
+* Name        : Admin\AdminHomeController.cs
 * Author      : Tom Sorteberg
 * Created     : 02/15/2021
 * Course      : CIS 174

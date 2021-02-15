@@ -1,5 +1,5 @@
 ﻿/***************************************************************
-* Name        : Admin/AssignmentController.cs
+* Name        : Admin/AdminAssignmentController.cs
 * Author      : Tom Sorteberg
 * Created     : 02/14/2021
 * Course      : CIS 174
@@ -79,7 +79,7 @@ namespace CIS174CourseWebsite.Areas.Admin.Controllers
         {
             context.Assignments.Remove(assignment);
             context.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("AdminIndex", "AdminHome");
         }
     }
 }

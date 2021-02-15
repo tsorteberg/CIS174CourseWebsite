@@ -1,6 +1,6 @@
 ﻿<!--
 /***************************************************************
-* Name        : Admin/Edit.cshtml
+* Name        : Admin/AdminDelete.cshtml
 * Author      : Tom Sorteberg
 * Created     : 02/14/2021
 * Course      : CIS 174
@@ -16,32 +16,15 @@
 -->
 @model Assignment
 @{
-    string title = ViewBag.Action + " Assignment:";
-    ViewBag.Title = title;
+    ViewBag.Title = "Delete Assignment";
 }
 
-<h2>@ViewBag.Title</h2>
+<h2>Confirm Deletion</h2>
+<h3>@Model.Name (@Model.URL)</h3>
 
-<form asp-action="Edit" method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
-
-    <div class="form-group">
-        <label asp-for="Name">Name</label>
-        <input asp-for="Name" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="URL">URL</label>
-        <input asp-for="URL" class="form-control" />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Note">Notes</label>
-        <input asp-for="Note" class="form-control" />
-    </div>
-
+<form asp-action="Delete" method="post">
     <input type="hidden" asp-for="AssignmentId" />
 
-    <button type="submit" class="btn btn-primary">@ViewBag.Action</button>
+    <button type="submit" class="btn btn-primary">Delete</button>
     <a asp-controller="AdminHome" asp-action="AdminIndex" class="btn btn-outline-secondary">Cancel</a>
 </form>
