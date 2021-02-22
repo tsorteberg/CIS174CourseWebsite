@@ -1,6 +1,6 @@
 ﻿<!--
 /***************************************************************
-* Name        : _M45Layout.cshtml
+* Name        : _Layout.cshtml
 * Author      : Tom Sorteberg
 * Created     : 02/14/2021
 * Course      : CIS 174
@@ -14,10 +14,14 @@
 * to my program.
 ***************************************************************/
 -->
+@{
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+
+}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewData["Title"] - CIS174CourseWebsite</title>
@@ -25,18 +29,33 @@
     <link rel="stylesheet" href="~/css/custom.css" />
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
-
 </head>
-
 <body>
     <div class="container">
         <header>
             <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-                <a class="navbar-brand" href="~/">Home</a>
+                <a asp-area="" controller="Home" asp-action="Index" class="navbar-brand">Home</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Assignment" asp-action="List" class="nav-link">Assignment Page</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Admin</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Assignments Quicklinks</a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                @foreach (var assignment in ViewBag.Assignments)
+                                {
+                                    <a class="dropdown-item" href="@assignment.URL">@assignment.Name</a>
+                                }
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </nav>
         </header>

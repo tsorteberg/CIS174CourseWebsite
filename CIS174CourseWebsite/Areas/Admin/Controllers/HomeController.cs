@@ -1,5 +1,5 @@
 ﻿/***************************************************************
-* Name        : Admin\AdminHomeController.cs
+* Name        : Admin\HomeController.cs
 * Author      : Tom Sorteberg
 * Created     : 02/15/2021
 * Course      : CIS 174
@@ -15,6 +15,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using CIS174CourseWebsite.Models;
+using System.Collections.Generic;
 
 namespace CIS174CourseWebsite.Areas.Admin.Controllers
 {
@@ -33,8 +34,9 @@ namespace CIS174CourseWebsite.Areas.Admin.Controllers
         // Index action.
         public IActionResult Index()
         {
-            var contacts = context.Assignments.OrderBy(m => m.Name).ToList();
-            return View(contacts);
+            var assignments = context.Assignments.OrderBy(m => m.Name).ToList();
+            ViewBag.Assignments = new List<Assignment>(assignments);
+            return View(assignments);
         }
     }
 }

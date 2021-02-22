@@ -15,6 +15,7 @@
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using CIS174CourseWebsite.Models;
+using System.Collections.Generic;
 
 namespace MultiPageWebApp.Controllers
 {
@@ -33,6 +34,7 @@ namespace MultiPageWebApp.Controllers
         public IActionResult List()
         {
             var assignments = context.Assignments.OrderBy(m => m.Name).ToList();
+            ViewBag.Assignments = new List<Assignment>(assignments);
             return View(assignments);
         }
     }

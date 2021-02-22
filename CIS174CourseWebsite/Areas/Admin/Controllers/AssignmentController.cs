@@ -1,5 +1,5 @@
 ﻿/***************************************************************
-* Name        : Admin/AdminAssignmentController.cs
+* Name        : Admin/AssignmentController.cs
 * Author      : Tom Sorteberg
 * Created     : 02/14/2021
 * Course      : CIS 174
@@ -14,6 +14,7 @@
 ***************************************************************/
 using Microsoft.AspNetCore.Mvc;
 using CIS174CourseWebsite.Models;
+using System.Linq;
 
 namespace CIS174CourseWebsite.Areas.Admin.Controllers
 {
@@ -34,6 +35,7 @@ namespace CIS174CourseWebsite.Areas.Admin.Controllers
         public IActionResult Add()
         {
             ViewBag.Action = "Add";
+            ViewBag.Assignments = context.Assignments.OrderBy(m => m.Name).ToList();
             return View("Edit", new Assignment());
         }
 
@@ -42,6 +44,7 @@ namespace CIS174CourseWebsite.Areas.Admin.Controllers
         public IActionResult Edit(int id)
         {
             ViewBag.Action = "Edit";
+            ViewBag.Assignments = context.Assignments.OrderBy(m => m.Name).ToList();
             var assignment = context.Assignments.Find(id);
             return View(assignment);
         }
@@ -70,6 +73,7 @@ namespace CIS174CourseWebsite.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
+            ViewBag.Assignments = context.Assignments.OrderBy(m => m.Name).ToList();
             var contact = context.Assignments.Find(id);
             return View(contact);
         }

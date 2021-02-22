@@ -12,17 +12,28 @@
 * unmodified. I have not given other fellow student(s) access 
 * to my program.         
 ***************************************************************/
-using CIS174CourseWebsite.Models;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+using CIS174CourseWebsite.Models;
 
 
 namespace CIS174CourseWebsite.Controllers
 {
     public class HomeController : Controller
     {
+        // Context class private attribute.
+        private AssignmentContext context { get; set; }
+
+        // Primary contructor.
+        public HomeController(AssignmentContext ctx)
+        {
+            context = ctx;
+        }
         // Index action.
+
         public IActionResult Index()
         {
+            ViewBag.Assignments = context.Assignments.OrderBy(m => m.Name).ToList();
             return View();
         }
 
