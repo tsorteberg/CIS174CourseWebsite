@@ -14,36 +14,37 @@
 ***************************************************************/
 using Microsoft.AspNetCore.Mvc;
 
-namespace CIS174CourseWebsite.Areas.M45.Controllers
+namespace CIS174CourseWebsite.Areas.M4T5.Controllers
 {
-    public class M45HomeController : Controller
+    [Area("M4T5")]
+    public class HomeController : Controller
     {
-        public IActionResult M45Index()
+        public IActionResult Index()
         {
             return View();
         }
 
-        public IActionResult M45Default(string id = "All")
+        public IActionResult Default(string id = "All")
         {
             if (id == "All")
             {
-                return Content("M45Home controller, M45Default action.");
+                return Content("Home controller, Default action.");
             }
             else
             {
-                return Content("M45Home controller, M45Default action, id: " + id);
+                return Content("Home controller, Default action, id: " + id);
             }
         }
 
-        public IActionResult M45Custom(string id, int page)
+        public IActionResult Custom(string id, int page)
         {
-            return Content("M45Home controller, M45Custom action, id: " + id + " Page: " + page);
+            return Content("Home controller, Custom action, id: " + id + " Page: " + page);
         }
 
-        [Route("M45Attribute/{cat?}")]
-        public IActionResult M45Attribute(string cat = "All")
+        [Route("Attribute/{cat?}")]
+        public IActionResult Attribute(string cat = "All")
         {
-            return Content("M45Home controller, M45Attribute action, Category: " + cat);
+            return Content("Home controller, Attribute action, Category: " + cat);
         }
     }
 }

@@ -18,19 +18,20 @@ using CIS174CourseWebsite.Models;
 
 namespace CIS174CourseWebsite.Areas.Admin.Controllers
 {
-    public class AdminHomeController : Controller
+    [Area("Admin")]
+    public class HomeController : Controller
     {
         // Context class private attribute.
         private AssignmentContext context { get; set; }
 
         // Primary contructor.
-        public AdminHomeController(AssignmentContext ctx)
+        public HomeController(AssignmentContext ctx)
         {
             context = ctx;
         }
 
         // Index action.
-        public IActionResult AdminIndex()
+        public IActionResult Index()
         {
             var contacts = context.Assignments.OrderBy(m => m.Name).ToList();
             return View(contacts);

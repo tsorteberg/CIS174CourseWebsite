@@ -21,7 +21,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-<a asp-controller="AdminAssignment" asp-action="Add">Add New Assignment</a>
+<a asp-controller="Assignment" asp-action="Add">Add New Assignment</a>
 <table class="table-striped table-bordered table-hover">
     <thead>
         <tr>
@@ -38,8 +38,8 @@
                 <td>@assignment.URL</td>
                 <td>@assignment.Note</td>
                 <td>
-                    <a asp-controller="AdminAssignment" asp-action="Edit" asp-route-id="@assignment.AssignmentId" asp-route-slug="@assignment.Slug">Edit</a>
-                    <a asp-controller="AdminAssignment" asp-action="Delete" asp-route-id="@assignment.AssignmentId" asp-route-slug="@assignment.Slug">Delete</a>
+                    <a asp-controller="Assignment" asp-action="Edit" asp-route-id="@assignment.AssignmentId" asp-route-slug="@assignment.Slug">Edit</a>
+                    <a asp-controller="Assignment" asp-action="Delete" asp-route-id="@assignment.AssignmentId" asp-route-slug="@assignment.Slug">Delete</a>
                 </td>
             </tr>
         }

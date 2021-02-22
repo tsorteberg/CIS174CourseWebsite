@@ -25,27 +25,27 @@
     <h2>Default routing:</h2>
     <p>
         endpoints.MapAreaControllerRoute(<br />
-        &nbsp&nbspname: "M45default", <br />
-        &nbsp&nbspareaName: "M45",<br />
-        &nbsp&nbsppattern: "M45/{controller=M45Home}/{action=M45Index}/{id?}");
+        &nbsp&nbspname: "default", <br />
+        &nbsp&nbspareaName: "M4T5",<br />
+        &nbsp&nbsppattern: "M4T5/{controller=Home}/{action=Index}/{id?}");
     </p>
-    <a href="/M45/">Default Route</a><br />
-    <a href="/M45/M45Home/M45Default/123">/M45/M45Home/M45Default/123</a><br />
+    <a href="/M4T5/">Default Route</a><br />
+    <a href="/M4T5/Home/Default/123">/M4T5/M4T5Home/M45Default/123</a><br />
     <br />
 
     <h2>Custom routing:</h2>
     <p>
         endpoints.MapAreaControllerRoute(<br />
-        &nbsp&nbspname: "M45paging", <br />
-        &nbsp&nbspareaName: "M45",<br />
-        &nbsp&nbsppattern: "M45/{controller}/{action}/{id}/page{page}");
+        &nbsp&nbspname: "paging", <br />
+        &nbsp&nbspareaName: "M4T5",<br />
+        &nbsp&nbsppattern: "M4T5/{controller}/{action}/{id}/page{page}");
     </p>
-    <a href="/M45/M45Home/M45Custom/123/page1">/M45/M45Home/M45Default/123/page1</a><br />
+    <a href="/M4T5/Home/Custom/123/page1">/M4T5/Home/Default/123/page1</a><br />
     <br />
 
     <h2>Attribute Routing:</h2>
     <p>
-        [Route("M45Attribute/{cat?}")]
+        [Route("Attribute/{cat?}")]
     </p>
-    <a href="/M45Attribute/routes">/M45Attribute/routes</a><br />
+    <a href="/Attribute/routes">/Attribute/routes</a><br />
 </div>

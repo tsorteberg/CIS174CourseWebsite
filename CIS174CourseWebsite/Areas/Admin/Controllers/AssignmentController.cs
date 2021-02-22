@@ -17,13 +17,14 @@ using CIS174CourseWebsite.Models;
 
 namespace CIS174CourseWebsite.Areas.Admin.Controllers
 {
-    public class AdminAssignmentController : Controller
+    [Area("Admin")]
+    public class AssignmentController : Controller
     {
         // Context class private attribute.
         private AssignmentContext context { get; set; }
 
         // Primary constructor.
-        public AdminAssignmentController(AssignmentContext ctx)
+        public AssignmentController(AssignmentContext ctx)
         {
             context = ctx;
         }
@@ -56,7 +57,7 @@ namespace CIS174CourseWebsite.Areas.Admin.Controllers
                 else
                     context.Assignments.Update(assignment);
                 context.SaveChanges();
-                return RedirectToAction("AdminIndex", "AdminHome");
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -79,7 +80,7 @@ namespace CIS174CourseWebsite.Areas.Admin.Controllers
         {
             context.Assignments.Remove(assignment);
             context.SaveChanges();
-            return RedirectToAction("AdminIndex", "AdminHome");
+            return RedirectToAction("Index", "Home");
         }
     }
 }
