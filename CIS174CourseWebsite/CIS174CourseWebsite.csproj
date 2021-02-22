@@ -15,8 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\M5T4\Controllers\" />
-    <Folder Include="Areas\M5T4\Views\" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
 

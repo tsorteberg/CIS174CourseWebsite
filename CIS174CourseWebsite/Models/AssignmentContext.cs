@@ -22,7 +22,7 @@ namespace CIS174CourseWebsite.Models
         public AssignmentContext(DbContextOptions<AssignmentContext> options) : base(options)
         { }
 
-        // Create Contacts Table using Assignment.cs model.
+        // Create Assignments Table using Assignment.cs model.
         public DbSet<Assignment> Assignments { get; set; }
 
         // Initial seed.

@@ -19,6 +19,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using CIS174CourseWebsite.Models;
+using CIS174CourseWebsite.Areas.M5T4.Models;
 
 namespace CIS174CourseWebsite
 {
@@ -35,7 +36,8 @@ namespace CIS174CourseWebsite
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddDbContext<AssignmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("AssignmentContext")));
+            services.AddDbContext<AssignmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
+            services.AddDbContext<StudentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
             services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;
@@ -67,17 +69,20 @@ namespace CIS174CourseWebsite
                     areaName: "Admin",
                     pattern: "Admin/{controller=Home}/{action=Index}/{id?}");
 
-                // Specific route - 4 required segments.
                 endpoints.MapAreaControllerRoute(
                     name: "M4T5paging",
                     areaName: "M4T5",
                     pattern: "M4T5/{controller}/{action}/{id}/page{page}");
 
-                // Least specific route - 0 required segments.
                 endpoints.MapAreaControllerRoute(
                     name: "M4T5default",
                     areaName: "M4T5",
                     pattern: "M4T5/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                    name: "M5T4default",
+                    areaName: "M5T4",
+                    pattern: "M5T4/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

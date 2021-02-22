@@ -1,5 +1,5 @@
 ﻿/***************************************************************
-* Name        : M45\HomeController.cs
+* Name        : M4T5/HomeController.cs
 * Author      : Tom Sorteberg
 * Created     : 02/15/2021
 * Course      : CIS 174
@@ -21,17 +21,8 @@ namespace CIS174CourseWebsite.Areas.M4T5.Controllers
     [Area("M4T5")]
     public class HomeController : Controller
     {
-        // Context class private attribute.
-        private AssignmentContext context { get; set; }
-
-        // Primary constructor.
-        public HomeController(AssignmentContext ctx)
-        {
-            context = ctx;
-        }
         public IActionResult Index()
         {
-            ViewBag.Assignments = context.Assignments.OrderBy(m => m.Name).ToList();
             return View();
         }
 
