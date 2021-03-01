@@ -1,7 +1,7 @@
 ﻿/***************************************************************
-* Name        : M6T3/Country.cs
+* Name        : M6T3/CountryListViewModel.cs
 * Author      : Tom Sorteberg
-* Created     : 02/29/2021
+* Created     : 03/01/2021
 * Course      : CIS 174
 * Version     : 1.0
 * OS          : Windows 10 Pro, Visual Studio Community 2019
@@ -19,11 +19,9 @@ using System.Threading.Tasks;
 
 namespace CIS174CourseWebsite.Areas.M6T3.Models
 {
-    public class CountryListViewModel
+    public class CountryListViewModel : CountryViewModel
     {
         public List<Country> Countries { get; set; }
-        public string ActiveGame { get; set; }
-        public string ActiveCategory { get; set; }
 
         private List<Game> games;
         public List<Game> Games
@@ -47,10 +45,8 @@ namespace CIS174CourseWebsite.Areas.M6T3.Models
             }
         }
 
-        // Methods to help view determine the active link.
         public string CheckActiveGame(string c) => c.ToLower() == ActiveGame.ToLower() ? "active" : "";
 
         public string CheckActiveCategory(string d) => d.ToLower() == ActiveCategory.ToLower() ? "active" : "";
-
     }
 }

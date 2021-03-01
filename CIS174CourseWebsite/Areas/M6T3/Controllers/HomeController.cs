@@ -18,6 +18,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace CIS174CourseWebsite.Areas.M6T3.Controllers
 {
@@ -32,7 +33,7 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
         }
         public ViewResult Index(string activeGame = "all", string activeCategory = "all")
         {
-            var model = new CountryListViewModel
+            var data = new CountryListViewModel
             {
                 ActiveGame = activeGame,
                 ActiveCategory = activeCategory,
@@ -46,31 +47,33 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
             if (activeCategory != "all")
                 query = query.Where(t => t.Category.CategoryID.ToLower() == activeCategory.ToLower());
 
-            model.Countries = query.ToList();
+            data.Countries = query.ToList();
+            return View(data);
+        }
+
+        [HttpPost]
+        public RedirectToActionResult Details(CountryViewModel model)
+        {
+            Utility.LogCountryClick(model.Country.CountryID);
+
+            TempData["ActiveGame"] = model.ActiveGame;
+            TempData["ActiveCategory"] = model.ActiveCategory;
+            return RedirectToAction("Details", new { ID = model.Country.CountryID });
+        }
+
+        [HttpGet]
+        public IActionResult Details(string id)
+        {
+            var model = new CountryViewModel
+            {
+                Country = context.Countries
+                    .Include(t => t.Game)
+                    .Include(t => t.Category)
+                    .FirstOrDefault(t => t.CountryID == id),
+                ActiveCategory = TempData?["ActiveCategory"]?.ToString() ?? "all",
+                ActiveGame = TempData?["Active"]?.ToString() ?? "all"
+            };
             return View(model);
-
-            /*ViewBag.ActiveGame = activeGame;
-            ViewBag.ActiveCategory = activeCategory;
-
-            List<Game> games = context.Games.ToList();
-            List<Category> categories = context.Categories.ToList();
-
-            games.Insert(0, new Game { GameID = "all", Name = "All" });
-            categories.Insert(0, new Category { CategoryID = "all", Name = "All" });
-
-            ViewBag.Games = games;
-            ViewBag.Categories = categories;
-
-            IQueryable<Country> query = context.Countries;
-            if (activeGame != "all")
-                query = query.Where(
-                    t => t.Game.GameID.ToLower() == activeGame.ToLower());
-            if (activeCategory != "all")
-                query = query.Where(
-                    t => t.Category.CategoryID.ToLower() == activeCategory.ToLower());
-
-            var countries = query.ToList();
-            return View(countries);*/
         }
     }
 }
