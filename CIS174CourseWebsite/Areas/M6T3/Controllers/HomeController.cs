@@ -32,7 +32,24 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
         }
         public ViewResult Index(string activeGame = "all", string activeCategory = "all")
         {
-            ViewBag.ActiveGame = activeGame;
+            var model = new CountryListViewModel
+            {
+                ActiveGame = activeGame,
+                ActiveCategory = activeCategory,
+                Games = context.Games.ToList(),
+                Categories = context.Categories.ToList()
+            };
+            IQueryable<Country> query = context.Countries;
+            if (activeGame != "all")
+                query = query.Where(t => t.Game.GameID.ToLower() == activeGame.ToLower());
+
+            if (activeCategory != "all")
+                query = query.Where(t => t.Category.CategoryID.ToLower() == activeCategory.ToLower());
+
+            model.Countries = query.ToList();
+            return View(model);
+
+            /*ViewBag.ActiveGame = activeGame;
             ViewBag.ActiveCategory = activeCategory;
 
             List<Game> games = context.Games.ToList();
@@ -53,7 +70,7 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
                     t => t.Category.CategoryID.ToLower() == activeCategory.ToLower());
 
             var countries = query.ToList();
-            return View(countries);
+            return View(countries);*/
         }
     }
 }
