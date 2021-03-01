@@ -65,6 +65,7 @@ namespace CIS174CourseWebsite.Areas.Admin.Controllers
             else
             {
                 ViewBag.Action = (assignment.AssignmentId == 0) ? "Add" : "Edit";
+                ViewBag.Assignments = context.Assignments.OrderBy(m => m.Name).ToList();
                 return View(assignment);
             }
         }

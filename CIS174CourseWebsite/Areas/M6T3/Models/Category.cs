@@ -19,9 +19,9 @@ using System.Threading.Tasks;
 
 namespace CIS174CourseWebsite.Areas.M6T3.Models
 {
-    public class Sport
+    public class Category
     {
-        public string SportID { get; set; }
+        public string CategoryID { get; set; }
         public string Name { get; set; }
     }
 }

@@ -23,8 +23,8 @@ namespace CIS174CourseWebsite.Areas.M6T3.Models
     {
         public string CountryID { get; set; }
         public string Name { get; set; }
-        public Game Games { get; set; }
-        public Sport Sports { get; set; }
+        public Game Game { get; set; }
+        public Category Category { get; set; }
         public string LogoImage { get; set; }
     }
 }

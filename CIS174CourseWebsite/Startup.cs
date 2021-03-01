@@ -20,6 +20,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using CIS174CourseWebsite.Models;
 using CIS174CourseWebsite.Areas.M5T4.Models;
+using CIS174CourseWebsite.Areas.M6T3.Models;
 
 namespace CIS174CourseWebsite
 {
@@ -38,6 +39,7 @@ namespace CIS174CourseWebsite
             services.AddControllersWithViews();
             services.AddDbContext<AssignmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
             services.AddDbContext<StudentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
+            services.AddDbContext<CountryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
             services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;
@@ -83,6 +85,16 @@ namespace CIS174CourseWebsite
                     name: "M5T4default",
                     areaName: "M5T4",
                     pattern: "M5T4/{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapAreaControllerRoute(
+                    name: "M6T3custom",
+                    areaName: "M6T3",
+                    pattern: "M6T3/{controller}/{action}/game{activeGame}/sport/{activeSport}");
+
+                endpoints.MapAreaControllerRoute(
+                    name: "M6T3default",
+                    areaName: "M6T3",
+                    pattern: "M6T3/{controller=Home}/{action=Index}/{id?}");
 
                 endpoints.MapControllerRoute(
                     name: "default",

@@ -45,3 +45,8 @@ table {
     word-wrap: break-word;
     max-width: 225px;
 }
+
+img {
+    margin: 1em;
+    border: 1px solid black;
+}

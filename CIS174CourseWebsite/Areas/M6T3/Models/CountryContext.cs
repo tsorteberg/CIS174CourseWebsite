@@ -1,5 +1,5 @@
 ﻿/***************************************************************
-* Name        : CountryContext.cs
+* Name        : M6T3/CountryContext.cs
 * Author      : Tom Sorteberg
 * Created     : 02/28/2021
 * Course      : CIS 174
@@ -27,54 +27,48 @@ namespace CIS174CourseWebsite.Areas.M6T3.Models
             : base(options)
         { }
 
-        public DbSet<Country> Teams { get; set; }
-        public DbSet<Game> Conferences { get; set; }
-        public DbSet<Sport> Divisions { get; set; }
+        public DbSet<Country> Countries { get; set; }
+        public DbSet<Game> Games { get; set; }
+        public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Game>().HasData(
                 new Game { GameID = "winter", Name = "Winter Olympics" },
-                new Game { GameID = "summmer", Name = "Summer Olympics" },
+                new Game { GameID = "summer", Name = "Summer Olympics" },
                 new Game { GameID = "para", Name = "Paraympics" },
                 new Game { GameID = "youth", Name = "Youth Olympic Games" }
             );
-            modelBuilder.Entity<Sport>().HasData(
-                new Sport { SportID = "curling", Name = "Curling/Indoor" },
-                new Sport { SportID = "bobsleigh", Name = "Bobsleigh/Outdoor" },
-                new Sport { SportID = "diving", Name = "Diving/Indoor" },
-                new Sport { SportID = "cycling", Name = "Road Cycling/Outdoor" },
-                new Sport { SportID = "archery", Name = "Archery/Indoor" },
-                new Sport { SportID = "canoeing", Name = "Canoe Spring/Outdoor" },
-                new Sport { SportID = "breakdancing", Name = "Breakdancing/Indoor" },
-                new Sport { SportID = "skateboarding", Name = "Skateboarding/Outdoor" }
+            modelBuilder.Entity<Category>().HasData(
+                new Category { CategoryID = "indoor", Name = "Indoor" },
+                new Category { CategoryID = "outdoor", Name = "Outdoor" }
             );
             modelBuilder.Entity<Country>().HasData(
-                new { CountryID = "canada", Name = "Canada", GameID = "winter", SportID = "curling", LogoImage = "canada.png" },
-                new { CountryID = "sweden", Name = "Sweden", GameID = "winter", SportID = "curling", LogoImage = "sweden.png" },
-                new { CountryID = "greatbritain", Name = "Great Britain", GameID = "winter", SportID = "curling", LogoImage = "greatbritain.png" },
-                new { CountryID = "jamaica", Name = "Jamaica", GameID = "winter", SportID = "bobsleigh", LogoImage = "jamaica.png" },
-                new { CountryID = "italy", Name = "Italy", GameID = "winter", SportID = "bobsleigh", LogoImage = "italy.png" },
-                new { CountryID = "japan", Name = "Japan", GameID = "winter", SportID = "bobsleigh", LogoImage = "japan.png" },
-                new { CountryID = "germany", Name = "Germany", GameID = "summer", SportID = "diving", LogoImage = "germany.png" },
-                new { CountryID = "china", Name = "China", GameID = "summer", SportID = "diving", LogoImage = "china.png" },
-                new { CountryID = "mexico", Name = "Mexico", GameID = "summer", SportID = "diving", LogoImage = "mexico.png" },
-                new { CountryID = "brazil", Name = "Brazil", GameID = "summer", SportID = "cycling", LogoImage = "brazil.png" },
-                new { CountryID = "netherlands", Name = "Netherlands", GameID = "summer", SportID = "cycling", LogoImage = "netherlands.png" },
-                new { CountryID = "usa", Name = "USA", GameID = "summer", SportID = "cycling", LogoImage = "usa.png" },
-                new { CountryID = "thailand", Name = "Thailand", GameID = "para", SportID = "archery", LogoImage = "thailand.png" },
-                new { CountryID = "uruguay", Name = "Uruguay", GameID = "para", SportID = "archery", LogoImage = "uraguay.png" },
-                new { CountryID = "ukraine", Name = "Ukraine", GameID = "para", SportID = "archery", LogoImage = "ukraine.png" },
-                new { CountryID = "austria", Name = "Austria", GameID = "para", SportID = "canoeing", LogoImage = "austria.png" },
-                new { CountryID = "pakistan", Name = "Pakistan", GameID = "para", SportID = "canoeing", LogoImage = "pakistan.png" },
-                new { CountryID = "zimbabwe", Name = "Zimbabwe", GameID = "para", SportID = "canoeing", LogoImage = "pakistan.png" },
-                new { CountryID = "france", Name = "France", GameID = "youth", SportID = "breakdancing", LogoImage = "france.png" },
-                new { CountryID = "cyprus", Name = "Cyprus", GameID = "youth", SportID = "breakdancing", LogoImage = "cyprus.png" },
-                new { CountryID = "russia", Name = "Russia", GameID = "youth", SportID = "breakdancing", LogoImage = "russia.png" },
-                new { CountryID = "finland", Name = "Finland", GameID = "youth", SportID = "skateboarding", LogoImage = "finland.png" },
-                new { CountryID = "slovakia", Name = "Slovakia", GameID = "youth", SportID = "skateboarding", LogoImage = "slovakia.png" },
-                new { CountryID = "portugal", Name = "Portugal", GameID = "youth", SportID = "skateboarding", LogoImage = "portugal.png" }
+                new { CountryID = "canada", Name = "Canada", GameID = "winter", CategoryID = "indoor", LogoImage = "M6T3/canada.png" },
+                new { CountryID = "sweden", Name = "Sweden", GameID = "winter", CategoryID = "indoor", LogoImage = "M6T3/sweden.png" },
+                new { CountryID = "greatbritain", Name = "Great Britain", GameID = "winter", CategoryID = "indoor", LogoImage = "M6T3/greatbritain.png" },
+                new { CountryID = "jamaica", Name = "Jamaica", GameID = "winter", CategoryID = "outdoor", LogoImage = "M6T3/jamaica.png" },
+                new { CountryID = "italy", Name = "Italy", GameID = "winter", CategoryID = "outdoor", LogoImage = "M6T3/italy.png" },
+                new { CountryID = "japan", Name = "Japan", GameID = "winter", CategoryID = "outdoor", LogoImage = "M6T3/japan.png" },
+                new { CountryID = "germany", Name = "Germany", GameID = "summer", CategoryID = "indoor", LogoImage = "M6T3/germany.png" },
+                new { CountryID = "china", Name = "China", GameID = "summer", CategoryID = "indoor", LogoImage = "M6T3/china.png" },
+                new { CountryID = "mexico", Name = "Mexico", GameID = "summer", CategoryID = "indoor", LogoImage = "M6T3/mexico.png" },
+                new { CountryID = "brazil", Name = "Brazil", GameID = "summer", CategoryID = "outdoor", LogoImage = "M6T3/brazil.png" },
+                new { CountryID = "netherlands", Name = "Netherlands", GameID = "summer", CategoryID = "outdoor", LogoImage = "M6T3/netherlands.png" },
+                new { CountryID = "usa", Name = "USA", GameID = "summer", CategoryID = "outdoor", LogoImage = "M6T3/usa.png" },
+                new { CountryID = "thailand", Name = "Thailand", GameID = "para", CategoryID = "indoor", LogoImage = "M6T3/thailand.png" },
+                new { CountryID = "uruguay", Name = "Uruguay", GameID = "para", CategoryID = "indoor", LogoImage = "M6T3/uruguay.png" },
+                new { CountryID = "ukraine", Name = "Ukraine", GameID = "para", CategoryID = "indoor", LogoImage = "M6T3/ukraine.png" },
+                new { CountryID = "austria", Name = "Austria", GameID = "para", CategoryID = "outdoor", LogoImage = "M6T3/austria.png" },
+                new { CountryID = "pakistan", Name = "Pakistan", GameID = "para", CategoryID = "outdoor", LogoImage = "M6T3/pakistan.png" },
+                new { CountryID = "zimbabwe", Name = "Zimbabwe", GameID = "para", CategoryID = "outdoor", LogoImage = "M6T3/zimbabwe.png" },
+                new { CountryID = "france", Name = "France", GameID = "youth", CategoryID = "indoor", LogoImage = "M6T3/france.png" },
+                new { CountryID = "cyprus", Name = "Cyprus", GameID = "youth", CategoryID = "indoor", LogoImage = "M6T3/cyprus.png" },
+                new { CountryID = "russia", Name = "Russia", GameID = "youth", CategoryID = "indoor", LogoImage = "M6T3/russia.png" },
+                new { CountryID = "finland", Name = "Finland", GameID = "youth", CategoryID = "outdoor", LogoImage = "M6T3/finland.png" },
+                new { CountryID = "slovakia", Name = "Slovakia", GameID = "youth", CategoryID = "outdoor", LogoImage = "M6T3/slovakia.png" },
+                new { CountryID = "portugal", Name = "Portugal", GameID = "youth", CategoryID = "outdoor", LogoImage = "M6T3/portugal.png" }
             );
         }
     }
