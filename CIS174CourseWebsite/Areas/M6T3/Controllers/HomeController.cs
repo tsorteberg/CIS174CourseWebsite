@@ -33,6 +33,9 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
         }
         public ViewResult Index(string activeGame = "all", string activeCategory = "all")
         {
+            var session = new OlympicSession(HttpContext.Session);
+            session.SetActiveGame(activeGame);
+            session.SetActiveCategory(activeCategory);
             var data = new CountryListViewModel
             {
                 ActiveGame = activeGame,
@@ -62,18 +65,43 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
         }
 
         [HttpGet]
-        public IActionResult Details(string id)
+        public ViewResult Details(string id)
         {
+            var session = new OlympicSession(HttpContext.Session);
             var model = new CountryViewModel
             {
                 Country = context.Countries
                     .Include(t => t.Game)
                     .Include(t => t.Category)
                     .FirstOrDefault(t => t.CountryID == id),
-                ActiveCategory = TempData?["ActiveCategory"]?.ToString() ?? "all",
-                ActiveGame = TempData?["Active"]?.ToString() ?? "all"
+                ActiveCategory = session.GetActiveCategory(),
+                ActiveGame = session.GetActiveGame()
             };
             return View(model);
+        }
+
+        [HttpPost]
+        public RedirectToActionResult Add(CountryViewModel data)
+        {
+            data.Country = context.Countries
+                .Include(t => t.Game)
+                .Include(t => t.Category)
+                .Where(t => t.CountryID == data.Country.CountryID)
+                .FirstOrDefault();
+
+            var session = new OlympicSession(HttpContext.Session);
+            var countries = session.GetMyCountries();
+            countries.Add(data.Country);
+            session.SetMyCountries(countries);
+
+            TempData["message"] = $"{data.Country.Name} added to your favorites";
+
+            return RedirectToAction("Index",
+                new
+                {
+                    ActiveGame = session.GetActiveGame(),
+                    ActiveCategory = session.GetActiveCategory()
+                });
         }
     }
 }
