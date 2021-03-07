@@ -26,7 +26,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewData["Title"] - CIS174CourseWebsite</title>
     <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/custom.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
 </head>
@@ -50,26 +50,30 @@
                 </div>
             </nav>
 
-            <h1 class="bg-primary mt-3 p-3 text-center text-white">Olympic Participants</h1>
+            <div class="text-center text-white">
 
-            @* show any message in TempData *@
-            @if (TempData["message"] != null)
-            {
-                <h4 class="bg-success p-2">@TempData["message"]</h4>
-            }
+                <h1 class="bg-primary mt-3 p-3 text-center text-white">Olympic Participants</h1>
 
-            @* show link to Favorites page unless on Favorites page *@
-            @if (!ViewContext.View.Path.Contains("Favorites"))
-            {
-                var session = new OlympicSession(Context.Session);
-                <h5 class="bg-info p-2">
-                    <a asp-controller="Favorites" asp-action="Index"
-                       class="text-white">My Favorite Countries</a>
+                @* show any message in TempData *@
+                @if (TempData["message"] != null)
+                {
+                    <h4 class="bg-success p-2">@TempData["message"]</h4>
+                }
 
-                    @* get number of Favorite teams from session and display in badge *@
-                    <span class="badge badge-light">@(session.GetMyCountryCount())</span>
-                </h5>
-            }
+                @* show link to Favorites page unless on Favorites page *@
+                @if (!ViewContext.View.Path.Contains("Favorites"))
+                {
+                    var session = new OlympicSession(Context.Session);
+                    <h5 class="bg-info p-2">
+                        <a asp-controller="Favorites" asp-action="Index"
+                           class="text-white">My Favorite Countries</a>
+
+                        @* get number of Favorite teams from session and display in badge *@
+                        <span class="badge badge-light">@(session.GetMyCountryCount())</span>
+                    </h5>
+                }
+
+            </div>
 
         </header>
 

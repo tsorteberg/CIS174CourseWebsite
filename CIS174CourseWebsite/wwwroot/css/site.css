@@ -1,0 +1,11 @@
+﻿button, button img {
+    background-color: white;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+
+img {
+    margin: 1em;
+    border: 1px solid black;
+}
