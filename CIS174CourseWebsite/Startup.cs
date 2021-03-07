@@ -36,7 +36,9 @@ namespace CIS174CourseWebsite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
+            services.AddMemoryCache();
+            services.AddSession();
+            services.AddControllersWithViews().AddNewtonsoftJson();
             services.AddDbContext<AssignmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
             services.AddDbContext<StudentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
             services.AddDbContext<CountryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
@@ -62,6 +64,8 @@ namespace CIS174CourseWebsite
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+
+            app.UseSession();
 
             app.UseRouting();
             app.UseEndpoints(endpoints =>
