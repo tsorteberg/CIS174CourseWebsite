@@ -1,5 +1,5 @@
 ﻿/***************************************************************
-* Name        : M6T3/Country.cs
+* Name        : M6T3/SessionExtensions.cs
 * Author      : Tom Sorteberg
 * Created     : 03/07/2021
 * Course      : CIS 174
