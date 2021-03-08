@@ -93,7 +93,7 @@ namespace CIS174CourseWebsite
                 endpoints.MapAreaControllerRoute(
                     name: "M6T3custom",
                     areaName: "M6T3",
-                    pattern: "M6T3/{controller}/{action}/game{activeGame}/category/{activeCategory}");
+                    pattern: "M6T3/{controller}/{action}/game/{activeGame}/category/{activeCategory}");
 
                 endpoints.MapAreaControllerRoute(
                     name: "M6T3default",
