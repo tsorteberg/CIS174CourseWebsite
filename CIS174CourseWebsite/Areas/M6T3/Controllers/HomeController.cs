@@ -36,7 +36,22 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
             var session = new OlympicSession(HttpContext.Session);
             session.SetActiveGame(activeGame);
             session.SetActiveCategory(activeCategory);
-            var data = new CountryListViewModel
+
+            int? count = session.GetMyCountryCount();
+            if (count == null)
+            {
+                var cookies = new OlympicCookies(Request.Cookies);
+                string[] ids = cookies.GetMyCountryIds();
+
+                List<Country> myteams = new List<Country>();
+                if (ids.Length > 0)
+                    myteams = context.Countries.Include(t => t.Game)
+                        .Include(t => t.Category)
+                        .Where(t => ids.Contains(t.CountryID)).ToList();
+                session.SetMyCountries(myteams);
+            }
+
+            var model = new CountryListViewModel
             {
                 ActiveGame = activeGame,
                 ActiveCategory = activeCategory,
@@ -50,8 +65,8 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
             if (activeCategory != "all")
                 query = query.Where(t => t.Category.CategoryID.ToLower() == activeCategory.ToLower());
 
-            data.Countries = query.ToList();
-            return View(data);
+            model.Countries = query.ToList();
+            return View(model);
         }
 
         [HttpPost]
@@ -81,20 +96,23 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
         }
 
         [HttpPost]
-        public RedirectToActionResult Add(CountryViewModel data)
+        public RedirectToActionResult Add(CountryViewModel model)
         {
-            data.Country = context.Countries
+            model.Country = context.Countries
                 .Include(t => t.Game)
                 .Include(t => t.Category)
-                .Where(t => t.CountryID == data.Country.CountryID)
+                .Where(t => t.CountryID == model.Country.CountryID)
                 .FirstOrDefault();
 
             var session = new OlympicSession(HttpContext.Session);
             var countries = session.GetMyCountries();
-            countries.Add(data.Country);
+            countries.Add(model.Country);
             session.SetMyCountries(countries);
 
-            TempData["message"] = $"{data.Country.Name} added to your favorites";
+            var cookies = new OlympicCookies(Response.Cookies);
+            cookies.SetMyCountryIds(countries);
+
+            TempData["message"] = $"{model.Country.Name} added to your favorites";
 
             return RedirectToAction("Index",
                 new

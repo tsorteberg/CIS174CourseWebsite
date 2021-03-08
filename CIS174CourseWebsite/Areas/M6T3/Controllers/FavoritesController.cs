@@ -42,7 +42,10 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
         public RedirectToActionResult Delete()
         {
             var session = new OlympicSession(HttpContext.Session);
+            var cookies = new OlympicCookies(Response.Cookies);
+
             session.RemoveMyCountries();
+            cookies.RemoveMyTeamIds();
 
             TempData["message"] = "Favorite countries cleared";
 
