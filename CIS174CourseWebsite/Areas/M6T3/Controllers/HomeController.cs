@@ -31,11 +31,15 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
         {
             context = ctx;
         }
-        public ViewResult Index(string activeGame = "all", string activeCategory = "all")
+        public ViewResult Index(CountryListViewModel model)
         {
+            model.Games = context.Games.ToList();
+            model.Categories = context.Categories.ToList();
+
+
             var session = new OlympicSession(HttpContext.Session);
-            session.SetActiveGame(activeGame);
-            session.SetActiveCategory(activeCategory);
+            session.SetActiveGame(model.ActiveGame);
+            session.SetActiveCategory(model.ActiveCategory);
 
             int? count = session.GetMyCountryCount();
             if (count == null)
@@ -51,21 +55,15 @@ namespace CIS174CourseWebsite.Areas.M6T3.Controllers
                 session.SetMyCountries(myteams);
             }
 
-            var model = new CountryListViewModel
-            {
-                ActiveGame = activeGame,
-                ActiveCategory = activeCategory,
-                Games = context.Games.ToList(),
-                Categories = context.Categories.ToList()
-            };
             IQueryable<Country> query = context.Countries;
-            if (activeGame != "all")
-                query = query.Where(t => t.Game.GameID.ToLower() == activeGame.ToLower());
+            if (model.ActiveGame != "all")
+                query = query.Where(t => t.Game.GameID.ToLower() == model.ActiveGame.ToLower());
 
-            if (activeCategory != "all")
-                query = query.Where(t => t.Category.CategoryID.ToLower() == activeCategory.ToLower());
+            if (model.ActiveCategory != "all")
+                query = query.Where(t => t.Category.CategoryID.ToLower() == model.ActiveCategory.ToLower());
 
             model.Countries = query.ToList();
+
             return View(model);
         }
 

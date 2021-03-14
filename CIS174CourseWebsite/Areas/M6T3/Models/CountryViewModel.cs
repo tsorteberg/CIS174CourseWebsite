@@ -24,6 +24,5 @@ namespace CIS174CourseWebsite.Areas.M6T3.Models
         public Country Country { get; set; }
         public string ActiveGame { get; set; } = "all";
         public string ActiveCategory { get; set; } = "all";
-
     }
 }
