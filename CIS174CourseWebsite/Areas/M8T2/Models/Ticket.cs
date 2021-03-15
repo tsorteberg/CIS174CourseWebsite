@@ -29,13 +29,13 @@ namespace CIS174CourseWebsite.Areas.M8T2.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Please enter a description.")]
-        public string description { get; set; }
+        public string Description { get; set; }
 
         [Required(ErrorMessage = "Please enter a sprint number.")]
-        public string sprintNumber { get; set; }
+        public string SprintNumber { get; set; }
 
         [Required(ErrorMessage = "Please enter a point value.")]
-        public string pointValue { get; set; }
+        public string PointValue { get; set; }
 
         [Required(ErrorMessage = "Please enter a due date.")]
         public DateTime? DueDate { get; set; }

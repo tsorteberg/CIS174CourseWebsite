@@ -23,6 +23,7 @@ using System.Threading.Tasks;
 
 namespace CIS174CourseWebsite.Areas.M8T2.Controllers
 {
+    [Area("M8T2")]
     public class HomeController : Controller
     {
         private TicketContext context;

@@ -21,6 +21,7 @@ using Microsoft.EntityFrameworkCore;
 using CIS174CourseWebsite.Models;
 using CIS174CourseWebsite.Areas.M5T4.Models;
 using CIS174CourseWebsite.Areas.M6T3.Models;
+using CIS174CourseWebsite.Areas.M8T2.Models;
 
 namespace CIS174CourseWebsite
 {
@@ -42,6 +43,7 @@ namespace CIS174CourseWebsite
             services.AddDbContext<AssignmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
             services.AddDbContext<StudentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
             services.AddDbContext<CountryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
+            services.AddDbContext<TicketContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
             services.AddRouting(options =>
             {
                 options.LowercaseUrls = true;

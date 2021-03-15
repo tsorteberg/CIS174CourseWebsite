@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CIS174CourseWebsite.Models
+namespace CIS174CourseWebsite.Areas.M8T2.Models
 {
     public class TicketContext : DbContext
     {
@@ -18,7 +18,7 @@ namespace CIS174CourseWebsite.Models
         protected override void OnModelCreating(ModelBuilder modelBuilder) 
         {
             modelBuilder.Entity<Status>().HasData(
-                new Status { StatusId = "todo", Name = "To Do" },
+                new Status { StatusId = "todo", Name = "To Do"},
                 new Status { StatusId = "inprogress", Name = "In Progress" },
                 new Status { StatusId = "qualityassurance", Name = "Quality Assurance" },
                 new Status { StatusId = "done", Name = "Done" }

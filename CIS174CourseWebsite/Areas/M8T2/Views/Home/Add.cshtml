@@ -1,0 +1,60 @@
+﻿<!--
+/***************************************************************
+* Name        : M8T2/Add.cshtml
+* Author      : Tom Sorteberg
+* Created     : 03/15/2021
+* Course      : CIS 174
+* Version     : 1.0
+* OS          : Windows 10 Pro, Visual Studio Community 2019
+* Copyright   : This is my own original work based on
+*               specifications issued by our instructor
+* Description : Module 8 Topic 2
+* I have not used unauthorized source code, either modified or
+* unmodified. I have not given other fellow student(s) access
+* to my program.
+***************************************************************/
+-->
+@model Ticket
+
+<h2>New Ticket</h2>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Add" method="post">
+
+    <div class="form-group">
+        <label asp-for="Name">Name:</label>
+        <input type="text" asp-for="Name" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Description:</label>
+        <input type="text" asp-for="Description" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="SprintNumber">Sprint#:</label>
+        <input type="text" asp-for="SprintNumber" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="PointValue">Point Value:</label>
+        <input type="text" asp-for="PointValue" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DueDate">Due Date:</label>
+        <input type="date" asp-for="DueDate" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label asp-for="StatusId">Status:</label>
+        <select asp-for="StatusId" class="form-control"
+                asp-items="@(new SelectList(ViewBag.Statuses, "StatusId", "Name"))">
+            <option value=""></option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add</button>
+    <a asp-action="Index" class="btn btn-primary">Cancel</a>
+</form>
