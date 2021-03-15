@@ -42,7 +42,7 @@ namespace CIS174CourseWebsite.Areas.M8T2.Models
 
         [RequiredAttribute(ErrorMessage = "Please select a status.")]
         public string StatusId { get; set; }
-        public Status status { get; set; }
+        public Status Status { get; set; }
 
         public bool Overdue =>
            StatusId == "open" && DueDate < DateTime.Today;
