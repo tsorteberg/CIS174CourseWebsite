@@ -1,0 +1,74 @@
+﻿<!--
+/***************************************************************
+* Name        : M8T2/_Layout.cshtml
+* Author      : Tom Sorteberg
+* Created     : 03/15/2021
+* Course      : CIS 174
+* Version     : 1.0
+* OS          : Windows 10 Pro, Visual Studio Community 2019
+* Copyright   : This is my own original work based on
+*               specifications issued by our instructor
+* Description : Module 8 Topic 2
+* I have not used unauthorized source code, either modified or
+* unmodified. I have not given other fellow student(s) access
+* to my program.
+***************************************************************/
+-->
+@{
+    string controller = ViewContext.RouteData.Values["controller"].ToString();
+    string action = ViewContext.RouteData.Values["action"].ToString();
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewData["Title"] - CIS174CourseWebsite</title>
+    <link rel="stylesheet" type="text/css" href="~/lib/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+                <a asp-area="" controller="Home" asp-action="Index" class="navbar-brand">Home</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Assignment" asp-action="List" class="nav-link">Assignment Page</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" asp-area="Admin" asp-controller="Home" asp-action="Index">Admin</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <div class="text-center text-white">
+
+                <h1 class="bg-primary mt-3 p-3 text-center text-white">Ticketing System</h1>
+
+            </div>
+
+        </header>
+
+        <main>
+            @RenderBody()
+        </main>
+
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - Tom Sorteberg
+        </div>
+    </footer>
+
+</body>
+</html>
