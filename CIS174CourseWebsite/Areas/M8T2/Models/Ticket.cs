@@ -37,8 +37,14 @@ namespace CIS174CourseWebsite.Areas.M8T2.Models
         [Required(ErrorMessage = "Please enter a point value.")]
         public string pointValue { get; set; }
 
+        [Required(ErrorMessage = "Please enter a due date.")]
+        public DateTime? DueDate { get; set; }
+
         [RequiredAttribute(ErrorMessage = "Please select a status.")]
         public string StatusId { get; set; }
         public Status status { get; set; }
+
+        public bool Overdue =>
+           StatusId == "open" && DueDate < DateTime.Today;
     }
 }
