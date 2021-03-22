@@ -14,6 +14,7 @@
 ***************************************************************/
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,5 +22,14 @@ namespace CIS174CourseWebsite.Areas.M9T2.Models
 {
     public class RegistrationModel
     {
+        // Instance variable declaration.
+        [Required(ErrorMessage = "Please enter a name.")]
+        [RegularExpression("(?i)^[a-zA-z .]+$", ErrorMessage ="Name contains invalid characters.")]
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public string EmailAddress { get; set; }
+        public string Preference { get; set; }
+        
     }
 }

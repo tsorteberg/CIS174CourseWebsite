@@ -12,6 +12,7 @@
 * unmodified. I have not given other fellow student(s) access 
 * to my program.         
 ***************************************************************/
+using CIS174CourseWebsite.Areas.M9T2.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -20,11 +21,12 @@ using System.Threading.Tasks;
 
 namespace CIS174CourseWebsite.Areas.M9T2.Controllers
 {
+    [Area("M9T2")]
     public class DisplayController : Controller
     {
-        public IActionResult Index()
+        public IActionResult ViewFormData(RegistrationModel model)
         {
-            return View();
+            return View(model);
         }
     }
 }

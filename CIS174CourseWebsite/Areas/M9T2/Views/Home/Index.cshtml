@@ -14,8 +14,28 @@
 * to my program.
 ***************************************************************/
 -->
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model RegistrationModel
 @{
+    ViewBag.Title = "Registration System";
 }
+
+
+<form asp-action="Index" method="post">
+    <div class="form-group row">
+        <div class="col-sm-2"><label>Name:</label></div>
+        <div class="col-sm-4">
+            <input type="text" asp-for="@Model.Name" class="form-control" />
+        </div>
+        <div class="col">
+            <span asp-validation-for="@Model.Name" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="offset-2 col-sm-4">
+            <button type="submit" class="btn btn-primary">Register</button>
+        </div>
+    </div>
+</form>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>

@@ -12,19 +12,35 @@
 * unmodified. I have not given other fellow student(s) access 
 * to my program.         
 ***************************************************************/
+using CIS174CourseWebsite.Areas.M9T2.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace CIS174CourseWebsite.Areas.M9T2.Controllers
 {
+    [Area("M9T2")]
     public class HomeController : Controller
     {
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index(RegistrationModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("ViewFormData", "Display", model);
+            }
+            else
+            {
+                return View(model);
+            }
         }
     }
 }
