@@ -25,6 +25,7 @@ namespace CIS174CourseWebsite.Areas.M9T2.Controllers
     [Area("M9T2")]
     public class HomeController : Controller
     {
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
@@ -33,6 +34,7 @@ namespace CIS174CourseWebsite.Areas.M9T2.Controllers
         [HttpPost]
         public IActionResult Index(RegistrationModel model)
         {
+            Console.WriteLine(ModelState.IsValid);
             if (ModelState.IsValid)
             {
                 return RedirectToAction("ViewFormData", "Display", model);
