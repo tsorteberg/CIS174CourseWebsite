@@ -11,15 +11,23 @@ namespace CIS174CourseWebsite.Areas.M9T2.Models
     {
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
-            try
+            if (value != null)
             {
-                MailAddress m = new MailAddress((String)value);
+                try
+                {
+                    MailAddress m = new MailAddress((String)value);
 
-                return ValidationResult.Success;
+                    return ValidationResult.Success;
+                }
+                catch (FormatException)
+                {
+                    string msg = "Please input a valid email address.";
+                    return new ValidationResult(msg);
+                }
             }
-            catch (FormatException)
+            else
             {
-                string msg = "Please input a valid email address.";
+                string msg = "Please enter an email address.";
                 return new ValidationResult(msg);
             }
         }

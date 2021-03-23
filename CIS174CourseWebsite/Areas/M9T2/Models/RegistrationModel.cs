@@ -34,7 +34,6 @@ namespace CIS174CourseWebsite.Areas.M9T2.Models
         [RegularExpression(@"^?([0-9]{3})[-]([0-9]{3})[-]([0-9]{4})$", ErrorMessage = "Phone number must be entered in XXX-XXX-XXXX format.")]
         public string Phone { get; set; }
 
-        [Required(ErrorMessage = "Please enter an email address.")]
         [ValidEmail]
         public string EmailAddress { get; set; }
 
