@@ -23,6 +23,8 @@ namespace CIS174CourseWebsite.Areas.M9T2.Models
     public class RegistrationModel
     {
         // Instance variable declaration.
+        public int Id { get; set; }
+
         [Required(ErrorMessage = "Please enter a name.")]
         [RegularExpression("(?i)^[a-zA-z .]+$", ErrorMessage ="Name contains invalid characters.")]
         public string Name { get; set; }

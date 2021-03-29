@@ -25,6 +25,9 @@ namespace CIS174CourseWebsite.Areas.M9T2.Controllers
     [Area("M9T2")]
     public class HomeController : Controller
     {
+        private RegistrationModelContext context;
+        public HomeController(RegistrationModelContext ctx) => context = ctx;
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -37,12 +40,23 @@ namespace CIS174CourseWebsite.Areas.M9T2.Controllers
             Console.WriteLine(ModelState.IsValid);
             if (ModelState.IsValid)
             {
-                return RedirectToAction("ViewFormData", "Display", model);
+                context.Validation.Add(model);
+                context.SaveChanges();
+                return RedirectToAction("ViewFormData", "Display");
             }
             else
             {
                 return View(model);
             }
+        }
+
+        [HttpGet]
+        public IActionResult Delete(int id)
+        {
+            var model = context.Validation.Find(id);
+            context.Validation.Remove(model);
+            context.SaveChanges();
+            return RedirectToAction("ViewFormData", "Display");
         }
     }
 }
