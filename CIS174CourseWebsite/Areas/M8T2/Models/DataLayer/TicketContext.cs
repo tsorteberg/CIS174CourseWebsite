@@ -23,6 +23,7 @@ namespace CIS174CourseWebsite.Areas.M8T2.Models
 {
     public class TicketContext : DbContext
     {
+        public TicketContext() { }
         public TicketContext(DbContextOptions<TicketContext> options)
             : base(options) { }
 

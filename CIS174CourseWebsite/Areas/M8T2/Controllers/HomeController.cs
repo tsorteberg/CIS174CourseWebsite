@@ -13,6 +13,7 @@
 * to my program.         
 ***************************************************************/
 using CIS174CourseWebsite.Areas.M8T2.Models;
+using CIS174CourseWebsite.Areas.M8T2.Models.DataLayer;
 using CIS174CourseWebsite.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -26,40 +27,62 @@ namespace CIS174CourseWebsite.Areas.M8T2.Controllers
     [Area("M8T2")]
     public class HomeController : Controller
     {
-        private TicketContext context;
-        public HomeController(TicketContext ctx) => context = ctx;
+        private Repository<Ticket> tickets { get; set; }
+        private Repository<Status> statuses { get; set; }
+
+        public HomeController(TicketContext ctx)
+        {
+            tickets = new Repository<Ticket>(ctx);
+            statuses = new Repository<Status>(ctx);
+        }
 
         public IActionResult Index(string id)
         {
             var filters = new Filters(id);
             ViewBag.Filters = filters;
-            ViewBag.Statuses = context.Statuses.ToList();
             ViewBag.DueFilters = Filters.DueFilterValues;
 
-            IQueryable<Ticket> query = context.Tickets
-                .Include(t => t.Status);
+            var statusOptions = new QueryOptions<Status>
+            {
+                OrderBy = so => so.Name
+            };
+
+            ViewBag.Statuses = statuses.List(statusOptions);
+
+            var ticketOptions = new QueryOptions<Ticket>
+            {
+                Includes = "Status"
+            };
+
             if (filters.HasStatus)
             {
-                query = query.Where(t => t.StatusId == filters.StatusId);
+                ticketOptions.Where = to => to.StatusId == filters.StatusId;
             }
             if (filters.HasDue)
             {
                 var today = DateTime.Today;
                 if (filters.IsPast)
-                    query = query.Where(t => t.DueDate < today);
+                    ticketOptions.Where = to => to.DueDate < today;
                 else if (filters.IsFuture)
-                    query = query.Where(t => t.DueDate > today);
+                    ticketOptions.Where = to => to.DueDate > today;
                 else if (filters.IsToday)
-                    query = query.Where(t => t.DueDate == today);
+                    ticketOptions.Where = to => to.DueDate == today;
             }
-            var tickets = query.OrderBy(t => t.DueDate).ToList();
-            return View(tickets);
+            ticketOptions.OrderBy = to => to.DueDate;
+            var returnValue = tickets.List(ticketOptions);
+            return View(returnValue);
         }
 
         [HttpGet]
         public IActionResult Add()
         {
-            ViewBag.Statuses = context.Statuses.ToList();
+            var statusOptions = new QueryOptions<Status>
+            {
+                OrderBy = so => so.Name
+            };
+
+            ViewBag.Statuses = statuses.List(statusOptions);
+
             return View();
         }
 
@@ -68,13 +91,18 @@ namespace CIS174CourseWebsite.Areas.M8T2.Controllers
         {
             if (ModelState.IsValid)
             {
-                context.Tickets.Add(ticket);
-                context.SaveChanges();
+                tickets.Insert(ticket);
+                tickets.Save();
                 return RedirectToAction("Index");
             }
             else
             {
-                ViewBag.Statuses = context.Statuses.ToList();
+                var statusOptions = new QueryOptions<Status>
+                {
+                    OrderBy = so => so.Name
+                };
+
+                ViewBag.Statuses = statuses.List(statusOptions);
                 return View(ticket);
             }
         }
@@ -91,16 +119,16 @@ namespace CIS174CourseWebsite.Areas.M8T2.Controllers
         {
             if (selected.StatusId == null)
             {
-                context.Tickets.Remove(selected);
+                tickets.Delete(selected);
             }
             else
             {
                 string newStatusId = selected.StatusId;
-                selected = context.Tickets.Find(selected.Id);
+                selected = tickets.Get(selected.Id);
                 selected.StatusId = newStatusId;
-                context.Tickets.Update(selected);
+                tickets.Update(selected);
             }
-            context.SaveChanges();
+            tickets.Save();
 
             return RedirectToAction("Index", new { ID = id });
         }

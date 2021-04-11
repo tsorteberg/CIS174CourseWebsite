@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIS174CourseWebsite", "CIS174CourseWebsite\CIS174CourseWebsite.csproj", "{BD2FF2B3-082E-4D83-8A63-131CA8A5662F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CIS174CourseWebsite", "CIS174CourseWebsite\CIS174CourseWebsite.csproj", "{BD2FF2B3-082E-4D83-8A63-131CA8A5662F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CIS174CourseWebsite.Tests", "CIS174CourseWebsite.Tests\CIS174CourseWebsite.Tests.csproj", "{00E428B3-1810-420B-9572-013E6BD59FEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{BD2FF2B3-082E-4D83-8A63-131CA8A5662F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD2FF2B3-082E-4D83-8A63-131CA8A5662F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD2FF2B3-082E-4D83-8A63-131CA8A5662F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00E428B3-1810-420B-9572-013E6BD59FEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00E428B3-1810-420B-9572-013E6BD59FEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00E428B3-1810-420B-9572-013E6BD59FEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00E428B3-1810-420B-9572-013E6BD59FEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
