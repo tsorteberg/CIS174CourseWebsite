@@ -23,6 +23,7 @@ using CIS174CourseWebsite.Areas.M5T4.Models;
 using CIS174CourseWebsite.Areas.M6T3.Models;
 using CIS174CourseWebsite.Areas.M8T2.Models;
 using CIS174CourseWebsite.Areas.M9T2.Models;
+using CIS174CourseWebsite.Areas.M8T2.Models.DataLayer;
 
 namespace CIS174CourseWebsite
 {
@@ -40,7 +41,11 @@ namespace CIS174CourseWebsite
         {
             services.AddMemoryCache();
             services.AddSession();
+
             services.AddControllersWithViews().AddNewtonsoftJson();
+
+            services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+
             services.AddDbContext<AssignmentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
             services.AddDbContext<StudentContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));
             services.AddDbContext<CountryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SharedContext")));

@@ -12,12 +12,7 @@
 * unmodified. I have not given other fellow student(s) access 
 * to my program.         
 ***************************************************************/
-using CIS174CourseWebsite.Areas.M8T2.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CIS174CourseWebsite.Areas.M8T2.Models
 {

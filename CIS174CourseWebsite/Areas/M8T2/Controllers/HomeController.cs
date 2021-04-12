@@ -16,26 +16,20 @@ using CIS174CourseWebsite.Areas.M8T2.Models;
 using CIS174CourseWebsite.Areas.M8T2.Models.DataLayer;
 using CIS174CourseWebsite.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace CIS174CourseWebsite.Areas.M8T2.Controllers
 {
     [Area("M8T2")]
     public class HomeController : Controller
     {
-        private Repository<Ticket> tickets { get; set; }
-        private Repository<Status> statuses { get; set; }
+        private IRepository<Ticket> tickets { get; set; }
+        private IRepository<Status> statuses { get; set; }
 
-        public HomeController(TicketContext ctx)
-        {
-            tickets = new Repository<Ticket>(ctx);
-            statuses = new Repository<Status>(ctx);
+        public HomeController(IRepository<Ticket> ti, IRepository<Status> st) {
+            tickets = ti;
+            statuses = st;
         }
-
         public IActionResult Index(string id)
         {
             var filters = new Filters(id);
@@ -54,11 +48,11 @@ namespace CIS174CourseWebsite.Areas.M8T2.Controllers
                 Includes = "Status"
             };
 
-            if (filters.HasStatus)
+            if (filters.HasStatus && !filters.HasDue)
             {
                 ticketOptions.Where = to => to.StatusId == filters.StatusId;
             }
-            if (filters.HasDue)
+            else if (filters.HasDue && !filters.HasStatus)
             {
                 var today = DateTime.Today;
                 if (filters.IsPast)
@@ -67,6 +61,16 @@ namespace CIS174CourseWebsite.Areas.M8T2.Controllers
                     ticketOptions.Where = to => to.DueDate > today;
                 else if (filters.IsToday)
                     ticketOptions.Where = to => to.DueDate == today;
+            }
+            else if (filters.HasStatus && filters.HasDue)
+            {
+                var today = DateTime.Today;
+                if (filters.IsPast)
+                    ticketOptions.Where = to => to.DueDate < today && to.StatusId == filters.StatusId;
+                else if (filters.IsFuture)
+                    ticketOptions.Where = to => to.DueDate > today && to.StatusId == filters.StatusId;
+                else if (filters.IsToday)
+                    ticketOptions.Where = to => to.DueDate == today && to.StatusId == filters.StatusId;
             }
             ticketOptions.OrderBy = to => to.DueDate;
             var returnValue = tickets.List(ticketOptions);
