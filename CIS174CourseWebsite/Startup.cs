@@ -119,6 +119,11 @@ namespace CIS174CourseWebsite
                     areaName: "M9T2",
                     pattern: "M9T2/{controller=Home}/{action=Index}/{id?}");
 
+                endpoints.MapAreaControllerRoute(
+                    name: "M12T2default",
+                    areaName: "M12T2",
+                    pattern: "M12T2/{controller=Home}/{action=Index}/{id?}");
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

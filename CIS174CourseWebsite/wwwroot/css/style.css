@@ -1,0 +1,49 @@
+﻿* {
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("images/M12T2/4851219536_0a6a485c9d_o.jpg");
+    /*"View of Lake McDonough" by Kelly McCarthy is licensed under CC BY-SA 2.0*/
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    max-width: 1830px;
+    margin: auto;
+    font-size: 15px;
+}
+
+.jumbotron {
+    background-color: rgba(138,160,200,0.5);
+}
+
+nav {
+    background-color: orange;
+}
+
+.row {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+}
+
+.carousel {
+    justify-content: flex-start;
+}
+
+.col-sm-5 {
+    background-color: rgba(138,160,200,.8);
+}
+
+.col-sm-7 {
+    background-color: rgba(138,160,200,.8);
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+footer {
+    text-align: center;
+    background-color: rgba(138,160,200,.8);
+    color: white;
+    margin: auto;
+}

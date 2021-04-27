@@ -13,8 +13,108 @@
 * unmodified. I have not given other fellow student(s) access
 * to my program.
 ***************************************************************/
+-->
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+<head>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            background-image: url("images/M12T2/4851219536_0a6a485c9d_o.jpg");
+            /*"View of Lake McDonough" by Kelly McCarthy is licensed under CC BY-SA 2.0*/
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            max-width: 1830px;
+            margin: auto;
+            font-size: 15px;
+        }
+
+        .jumbotron {
+            background-color: rgba(138,160,200,0.5);
+        }
+
+        nav {
+            background-color: orange;
+        }
+
+        .row {
+            margin-left: 0;
+            margin-right: 0;
+            padding: 0;
+        }
+
+        .carousel {
+            justify-content: flex-start;
+        }
+
+        .col-sm-5 {
+            background-color: rgba(138,160,200,.8);
+        }
+
+        .col-sm-7 {
+            background-color: rgba(138,160,200,.8);
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        footer {
+            text-align: center;
+            background-color: rgba(138,160,200,.8);
+            color: white;
+            margin: auto;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="jumbotron">
+
+        <h1 class="font-weight-bold">The Joy of Kayaking</h1>
+        <h2>A Hobby Suitable For Everyone</h2>
+
+    </header>
+
+    <div id="container">
+
+        <main class="row">
+
+            <div class="col-12 col-sm-5">
+
+                <p class="text-muted">
+                    <br>The following is an excerpt from <a href="https://adventure.howstuffworks.com/outdoor-activities/water-sports/kayaking4.htm">How Stuff Works</a>.
+                </p>
+                <p>
+                    The Inuit and Aleut tribes of Arctic North America were the first people to build and use kayaks. There were two basic types of kayaks at this point: One was built with light driftwood, while the others were made by stretching animal skins over frames made of whalebone. The tribe members used whale fat to waterproof the vessels. To improve buoyancy, they'd fill seal bladders with air and tuck them into the fore and aft sections.
+                </p>
+
+                <p>
+                    In addition to the single-person versions that look like modern kayaks, they also used umiaqs -- larger kayaks that could carry entire families and their possessions. Some umiaqs were as long as 60 feet (18.3 meters). The smaller kayaks were primarily used for hunting. The word kayak actually means "hunter's boat." Kayaks are ideal for hunting because of their stealth nature. Inuits could sneak up on unsuspecting animals on the shoreline or in the water.
+                </p>
+
+                <p>
+                    The kayak found its way to Europe in the early to mid-1800s as a soft-sided frame boat, and German and French men soon began kayaking for sport. Kayaks also maintained their practical use in icy waters -- explorers of the North Pole and South Pole carried them in their expeditions. Soon after, kayakers got a little adventurous. In 1931, a man named Adolf Anderle became the first person to kayak down the Salzachofen Gorge. This may have been the birth of modern white-water kayaking. The International Scale of River Difficulty was established not long after to classify how dangerous a river's rapids were -- the same classification system used today.
+                </p>
+            </div>
+
+            <div class="col-12 col-sm-7">
+                <partial name="PartialIndex" />
+            </div>
+
+        </main>
+
+    </div>	<!-- end page container -->
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2021 - Tom Sorteberg
+        </div>
+    </footer>
+
+</body>

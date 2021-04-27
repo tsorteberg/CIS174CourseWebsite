@@ -16,9 +16,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\M12T2\Models\" />
     <Folder Include="wwwroot\images\M6T3\" />
     <Folder Include="wwwroot\lib\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\style.css" />
   </ItemGroup>
 
 </Project>
